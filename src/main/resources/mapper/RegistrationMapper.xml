@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.RegistrationDao">
+
+    <resultMap type="Registration" id="registrationResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="registrationNumber" column="Number"/>
+        <result property="registrationFaculty" column="Faculty"/>
+        <result property="registrationMajor" column="Major"/>
+        <result property="registrationName" column="Name"/>
+        <result property="registrationTitle" column="Title"/>
+        <result property="registrationTeacher" column="Teacher"/>
+        <result property="registrationTime" column="Time"/>
+        <result property="registrationLocation" column="Location"/>
+        <result property="registrationMember_1_name" column="Member_1_name"/>
+        <result property="registrationMember_1_title" column="Member_1_title"/>
+        <result property="registrationMember_1_research" column="Member_1_research"/>
+        <result property="registrationMember_1_score" column="Member_1_score"/>
+        <result property="registrationMember_2_name" column="Member_2_name"/>
+        <result property="registrationMember_2_title" column="Member_2_title"/>
+        <result property="registrationMember_2_research" column="Member_2_research"/>
+        <result property="registrationMember_2_score" column="Member_2_score"/>
+        <result property="registrationMember_3_name" column="Member_3_name"/>
+        <result property="registrationMember_3_title" column="Member_3_title"/>
+        <result property="registrationMember_3_research" column="Member_3_research"/>
+        <result property="registrationMember_3_score" column="Member_3_score"/>
+        <result property="registrationMember_4_name" column="Member_4_name"/>
+        <result property="registrationMember_4_title" column="Member_4_title"/>
+        <result property="registrationMember_4_research" column="Member_4_research"/>
+        <result property="registrationMember_4_score" column="Member_4_score"/>
+        <result property="registrationMember_5_name" column="Member_5_name"/>
+        <result property="registrationMember_5_title" column="Member_5_title"/>
+        <result property="registrationMember_5_research" column="Member_5_research"/>
+        <result property="registrationMember_5_score" column="Member_5_score"/>
+        <result property="registrationTotal_score" column="Total_score"/>
+        <result property="registrationJudgement" column="Judgement"/>
+        <result property="registrationMentor_score" column="Mentor_score"/>
+        <result property="registrationJudge_score" column="Judge_score"/>
+        <result property="registrationScore" column="Score"/>
+        <result property="registrationThesis_score" column="Thesis_score"/>
+        <result property="registrationThesis_score1" column="Thesis_score1"/>
+        <result property="registrationThesis_scale" column="Thesis_scale"/>
+        <result property="registrationRecord" column="Record"/>
+    </resultMap>
+    <insert id="addRegistration" parameterType="Registration">
+        INSERT INTO registration_form(Faculty,Major,Number,Name,Title,Teacher,Time,Location,Member_1_name,Member_1_title,Member_1_research,Member_1_score,Member_2_name,Member_2_title,Member_2_research,Member_2_score,Member_3_name,Member_3_title,Member_3_research,Member_3_score,Member_4_name,Member_4_title,Member_4_research,Member_4_score,Member_5_name,Member_5_title,Member_5_research,Member_5_score,Total_score,Judgement,Mentor_score,Judge_score,Score,Thesis_score,Thesis_score1,Thesis_scale,Record) VALUE (#{registrationFaculty},#{registrationMajor}, #{registrationNumber}, #{registrationName}, #{registrationTitle}, #{registrationTeacher}, #{registrationTime}, #{registrationLocation}, #{registrationMember_1_name},#{registrationMember_1_title},#{registrationMember_1_research},#{registrationMember_1_score},#{registrationMember_2_name},#{registrationMember_2_title},#{registrationMember_2_research},#{registrationMember_2_score},#{registrationMember_3_name},#{registrationMember_3_title},#{registrationMember_3_research},#{registrationMember_3_score},#{registrationMember_4_name},#{registrationMember_4_title},#{registrationMember_4_research},#{registrationMember_4_score}, #{registrationMember_5_name}, #{registrationMember_5_title}, #{registrationMember_5_research},#{registrationMember_5_score},#{registrationTotal_score}, #{registrationJudgement}, #{registrationMentor_score}, #{registrationJudge_score},#{registrationScore}, #{registrationThesis_score}, #{registrationThesis_score1}, #{registrationThesis_scale},#{registrationRecord})
+    </insert>
+
+    <delete id="deleteRegistrationByNumber" parameterType="long">
+        DELETE FROM registration_form WHERE Number=#{registrationNumber}
+    </delete>
+
+    <update id="updateRegistration" parameterType="Registration">
+        UPDATE registration_form
+        SET Faculty = #{registrationFaculty},Major = #{registrationMajor},Name = #{registrationName},Title = #{registrationTitle},Teacher = #{registrationTeacher},Time = #{registrationTime},Location = #{registrationLocation},Member_1_name = #{registrationMember_1_name},Member_1_title = #{registrationMember_1_title},Member_1_research = #{registrationMember_1_research},Member_1_score = #{registrationMember_1_score},Member_2_name = #{registrationMember_2_name},Member_2_title = #{registrationMember_2_title},Member_2_research = #{registrationMember_2_research},Member_2_score = #{registrationMember_2_score},Member_3_name = #{registrationMember_3_name},Member_3_title = #{registrationMember_3_title},Member_3_research = #{registrationMember_3_research},Member_3_score = #{registrationMember_3_score},Member_4_name = #{registrationMember_4_name},Member_4_title = #{registrationMember_4_title},Member_4_research = #{registrationMember_4_research},Member_4_score = #{registrationMember_4_score},Member_5_name = #{registrationMember_5_name},Member_5_title = #{registrationMember_5_title},Member_5_research = #{registrationMember_5_research},Member_5_score = #{registrationMember_5_score},Total_score = #{registrationTotal_score},Judgement = #{registrationJudgement},Mentor_score=#{registrationMentor_score},Judge_score = #{registrationJudge_score},Score = #{registrationScore},Thesis_score = #{registrationThesis_score},Thesis_score1 = #{registrationThesis_score1},Thesis_scale = #{registrationThesis_scale},Record=#{registrationRecord}
+        WHERE  Number = #{registrationNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="Registration" parameterType="long">
+        SELECT *
+        FROM registration_form
+        WHERE Number=#{registrationNumber}
+    </select>
+    <select id="queryAllRegistration" resultMap="registrationResultMap">
+        SELECT Faculty,Major,Name,Number
+        FROM registration_form
+    </select>
+    <select id="queryByNumberRegistration" resultMap="registrationResultMap" parameterType="long">
+        SELECT *
+        FROM registration_form
+        WHERE Number=#{registrationNumber}
+    </select>
+
+
+</mapper>

@@ -53,6 +53,20 @@
                 <li><a href="${ctx}/selectSubject/subList"  target="mainFrame">已审核列表</a></li>
             </ul>
         </li>
+
+        <%--刘云添加--%>
+        <li class="has_sub"><a href="#"><i class="icon-list-alt"></i>中间文档生成  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+                <li><a href="${ctx}/assignment/admAllAssignment" target="mainFrame" >任务书</a></li>
+                <li><a href="${ctx}/openingReport/admAllReport" target="mainFrame" >开题报告</a></li>
+                <li><a href="${ctx}/application/admAllApplication" target="mainFrame" >答辩申请表</a></li>
+                <li><a href="${ctx}/workRecord/admAllRecord" target="mainFrame" >指导工作记录表</a></li>
+                <li><a href="${ctx}/score/admAllScore" target="mainFrame" >指导教师评分表</a></li>
+                <li><a href="${ctx}/comment/admAllComment" target="mainFrame" >评阅教师评阅表</a></li>
+                <li><a href="${ctx}/registration/admAllRegistration" target="mainFrame" >答辩情况登记表</a></li>
+            </ul>
+        </li>
+
         <li><a href="${ctx}/selectTopic/topicList" target="mainFrame" ><i class="icon-file-alt"></i> 选题信息列表 </a></li>
 
         <li><a href="${ctx}/selectSubject/subAllList" target="mainFrame" ><i class="icon-file-alt"></i> 历届题目信息 </a></li>

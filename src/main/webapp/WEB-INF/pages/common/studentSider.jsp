@@ -6,6 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%--刘云添加--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+
 <html>
 <head>
     <title>Title</title>
@@ -32,6 +37,16 @@
         <li><a href="${ctx}/selectSubject/stuSubList" target="mainFrame" ><i class="icon-file-alt"></i> 论文题目列表 </a></li>
         <li><a href="${ctx}/selectTopic/topicList" target="mainFrame" ><i class="icon-file-alt"></i> 选题信息管理 </a></li>
         <li><a href="${ctx}/selectSubject/subAllList" target="mainFrame" ><i class="icon-file-alt"></i> 历届论文信息 </a></li>
+
+        <%--刘云添加--%>
+        <li class="has_sub"><a href="#"><i class="icon-list-alt"></i>中间文档生成  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+                <li><a href="${ctx}/assignment/stuAllAssignment" target="mainFrame" >任务书</a></li>
+                <li><a href="${ctx}/openingReport/stuAllReport" target="mainFrame" >开题报告</a></li>
+                <li><a href="${ctx}/application/stuAllApplication" target="mainFrame" >答辩申请表</a></li>
+                <li><a href="${ctx}/workRecord/stuAllRecord" target="mainFrame" >指导工作记录表</a></li>
+            </ul>
+        </li>
 
         <li><a href="javascript:;" onclick="score()" target="mainFrame"><i class="icon-calendar"></i>成绩查询</a></li>
         <li><a href="${ctx}/logout" target="_top"><i class="icon-bar-chart"></i>注销</a></li>

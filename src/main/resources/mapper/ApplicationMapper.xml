@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.ApplicationDao">
+
+    <resultMap type="Application" id="applicationResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="applicationNumber" column="Number"/>
+        <result property="applicationMajor" column="Major"/>
+        <result property="applicationName" column="Name"/>
+        <result property="applicationTitle" column="Title"/>
+        <result property="applicationContent" column="Content"/>
+        <result property="applicationOpinion" column="Opinion"/>
+    </resultMap>
+    <insert id="addApplication" parameterType="Application">
+        INSERT INTO application_form(Name,Major,Number,Title,Content,Opinion) VALUE (#{applicationName},#{applicationMajor}, #{applicationNumber}, #{applicationTitle},#{applicationContent},#{applicationOpinion})
+    </insert>
+
+    <delete id="deleteApplicationByNumber" parameterType="long">
+        DELETE FROM application_form WHERE Number=#{applicationNumber}
+    </delete>
+
+    <update id="updateApplication" parameterType="Application">
+        UPDATE application_form
+        SET Name = #{applicationName},Major = #{applicationMajor},Title = #{applicationTitle},Content = #{applicationContent},Opinion = #{applicationOpinion}
+        WHERE  Number = #{applicationNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="Application" parameterType="long">
+        SELECT Name,Major,Number,Title,Content,Opinion
+        FROM application_form
+        WHERE Number=#{applicationNumber}
+    </select>
+    <select id="queryAllApplication" resultMap="applicationResultMap">
+        SELECT Name,Major,Number
+        FROM application_form
+    </select>
+    <select id="queryByNumberApplication" resultMap="applicationResultMap" parameterType="long">
+        SELECT *
+        FROM application_form
+        WHERE Number=#{applicationNumber}
+    </select>
+
+</mapper>

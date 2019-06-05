@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.OpeningReportDao">
+
+    <resultMap type="OpeningReport" id="openingReportResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="openingReportNumber" column="Number"/>
+        <result property="openingReportTime" column="Time"/>
+        <result property="openingReportTitle" column="Title"/>
+        <result property="openingReportName" column="Name"/>
+        <result property="openingReportMajor" column="Major"/>
+        <result property="openingReportTeacher" column="Teacher"/>
+        <result property="openingReportJob_title" column="Job_title"/>
+        <result property="openingReportFaculty" column="Faculty"/>
+        <result property="openingReportSource" column="Source"/>
+        <result property="openingReportType" column="Type"/>
+        <result property="openingReportSignificance" column="Significance"/>
+        <result property="openingReportStatus" column="Status"/>
+        <result property="openingReportContent" column="Content"/>
+        <result property="openingReportTechnology" column="Technology"/>
+        <result property="openingReportStep" column="Step"/>
+        <result property="openingReportLiterature" column="Literature"/>
+        <result property="openingReportOpinion1" column="Opinion1"/>
+        <result property="openingReportOpinion2" column="Opinion2"/>
+        <result property="openingReportOpinion3" column="Opinion3"/>
+    </resultMap>
+    <insert id="addReport" parameterType="OpeningReport">
+        INSERT INTO opening_report(Time,Title,Name,Number,Major,Teacher,Job_title,Faculty,Source,Type,Significance,Status,Content,Technology,Step,Literature,Opinion1,Opinion2,Opinion3) VALUE (#{openingReportTime},#{openingReportTitle}, #{openingReportName}, #{openingReportNumber}, #{openingReportMajor}, #{openingReportTeacher},#{openingReportJob_title},#{openingReportFaculty},#{openingReportSource}, #{openingReportType}, #{openingReportSignificance}, #{openingReportStatus},#{openingReportContent}, #{openingReportTechnology}, #{openingReportStep}, #{openingReportLiterature},#{openingReportOpinion1},#{openingReportOpinion2},#{openingReportOpinion3})
+    </insert>
+
+    <delete id="deleteReportByNumber" parameterType="long">
+        DELETE FROM opening_report WHERE Number=#{openingReportNumber}
+    </delete>
+
+    <update id="updateReport" parameterType="OpeningReport">
+        UPDATE opening_report
+        SET Time = #{openingReportTime},Title = #{openingReportTitle},Name = #{openingReportName},Major = #{openingReportMajor},Teacher = #{openingReportTeacher},Job_title = #{openingReportJob_title},Faculty = #{openingReportFaculty},Source = #{openingReportSource},Type = #{openingReportType},Significance=#{openingReportSignificance},Status = #{openingReportStatus},Content = #{openingReportContent},Technology = #{openingReportTechnology},Step = #{openingReportStep},Literature = #{openingReportLiterature},Opinion1 = #{openingReportOpinion1},Opinion2 = #{openingReportOpinion2},Opinion3 = #{openingReportOpinion3}
+        WHERE  Number = #{openingReportNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="OpeningReport" parameterType="long">
+        SELECT *
+        FROM opening_report
+        WHERE Number=#{openingReportNumber}
+    </select>
+    <select id="queryAllReport" resultMap="openingReportResultMap">
+        SELECT Faculty,Major,Name,Number
+        FROM opening_report
+    </select>
+    <select id="queryByNumberReport" resultMap="openingReportResultMap" parameterType="long">
+        SELECT *
+        FROM opening_report
+        WHERE Number=#{openingReportNumber}
+    </select>
+
+
+</mapper>

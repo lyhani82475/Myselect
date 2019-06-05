@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.CommentDao">
+
+    <resultMap type="Comment" id="commentResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="commentNumber" column="Number"/>
+        <result property="commentFaculty" column="Faculty"/>
+        <result property="commentMajor" column="Major"/>
+        <result property="commentName" column="Name"/>
+        <result property="commentTitle" column="Title"/>
+        <result property="commentScore_1" column="Score_1"/>
+        <result property="commentScore_2" column="Score_2"/>
+        <result property="commentScore_3" column="Score_3"/>
+        <result property="commentScore_4" column="Score_4"/>
+        <result property="commentScore_5" column="Score_5"/>
+        <result property="commentScore_6" column="Score_6"/>
+        <result property="commentScore_7" column="Score_7"/>
+        <result property="commentScore_8" column="Score_8"/>
+        <result property="commentScore_9" column="Score_9"/>
+        <result property="commentScore_10" column="Score_10"/>
+        <result property="commentScore_11" column="Score_11"/>
+        <result property="commentScore_12" column="Score_12"/>
+        <result property="commentScore_13" column="Score_13"/>
+        <result property="commentScore_14" column="Score_14"/>
+        <result property="commentScore_15" column="Score_15"/>
+        <result property="commentJudgement" column="Judgement"/>
+    </resultMap>
+    <insert id="addComment" parameterType="Comment">
+        INSERT INTO comment_form(Faculty,Major,Name,Number,Title,Score_1,Score_2,Score_3,Score_4,Score_5,Score_6,Score_7,Score_8,Score_9,Score_10,Score_11,Score_12,Score_13,Score_14,Score_15,Judgement) VALUE (#{commentFaculty},#{commentMajor}, #{commentName}, #{commentNumber}, #{commentTitle},#{commentScore_1},#{commentScore_2},#{commentScore_3}, #{commentScore_4}, #{commentScore_5}, #{commentScore_6},#{commentScore_7}, #{commentScore_8}, #{commentScore_9}, #{commentScore_10},#{commentScore_11}, #{commentScore_12}, #{commentScore_13}, #{commentScore_14},#{commentScore_15}, #{commentJudgement})
+    </insert>
+
+    <delete id="deleteCommentByNumber" parameterType="long">
+        DELETE FROM comment_form WHERE Number=#{commentNumber}
+    </delete>
+
+    <update id="updateComment" parameterType="Comment">
+        UPDATE comment_form
+        SET Faculty = #{commentFaculty},Major = #{commentMajor},Name = #{commentName},Title = #{commentTitle},Score_1 = #{commentScore_1},Score_2 = #{commentScore_2},Score_3 = #{commentScore_3},Score_4 = #{commentScore_4},Score_5 = #{commentScore_5},Score_6=#{commentScore_6},Score_7 = #{commentScore_7},Score_8 = #{commentScore_8},Score_9 = #{commentScore_9},Score_10 = #{commentScore_10},Score_11 = #{commentScore_11},Score_12=#{commentScore_12},Score_13 = #{commentScore_13},Score_14 = #{commentScore_14},Score_15 = #{commentScore_15},Judgement=#{commentJudgement}
+        WHERE  Number = #{commentNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="Comment" parameterType="long">
+        SELECT *
+        FROM comment_form
+        WHERE Number=#{commentNumber}
+    </select>
+    <select id="queryAllComment" resultMap="commentResultMap">
+        SELECT Faculty,Major,Name,Number
+        FROM comment_form
+    </select>
+    <select id="queryByNumberComment" resultMap="commentResultMap" parameterType="long">
+        SELECT *
+        FROM comment_form
+        WHERE Number=#{commentNumber}
+    </select>
+
+
+</mapper>

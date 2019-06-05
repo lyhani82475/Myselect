@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.WorkRecordDao">
+
+    <resultMap type="WorkRecord" id="workRecordResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="workRecordNumber" column="Number"/>
+        <result property="workRecordName" column="Name"/>
+        <result property="workRecordFaculty" column="Faculty"/>
+        <result property="workRecordMajor" column="Major"/>
+        <result property="workRecordClass" column="Class"/>
+        <result property="workRecordTeacher" column="Teacher"/>
+        <result property="workRecordJob_title" column="Job_title"/>
+        <result property="workRecordTitle" column="Title"/>
+        <result property="workRecordRecord_1" column="Record_1"/>
+        <result property="workRecordRecord_2" column="Record_2"/>
+        <result property="workRecordRecord_3" column="Record_3"/>
+        <result property="workRecordRecord_4" column="Record_4"/>
+        <result property="workRecordRecord_5" column="Record_5"/>
+        <result property="workRecordRecord_6" column="Record_6"/>
+    </resultMap>
+    <insert id="addWorkRecord" parameterType="WorkRecord">
+        INSERT INTO work_record_form(Name,Number,Faculty,Major,Class,Teacher,Job_title,Title,Record_1,Record_2,Record_3,Record_4,Record_5,Record_6) VALUE (#{workRecordName}, #{workRecordNumber},#{workRecordFaculty},#{workRecordMajor},#{workRecordClass},#{workRecordTeacher},#{workRecordJob_title}, #{workRecordTitle},#{workRecordRecord_1},#{workRecordRecord_2},#{workRecordRecord_3}, #{workRecordRecord_4}, #{workRecordRecord_5},#{workRecordRecord_6})
+    </insert>
+
+    <delete id="deleteWorkRecordByNumber" parameterType="long">
+        DELETE FROM work_record_form WHERE Number=#{workRecordNumber}
+    </delete>
+
+    <update id="updateWorkRecord" parameterType="WorkRecord">
+        UPDATE work_record_form
+        SET Name = #{workRecordName},Faculty = #{workRecordFaculty},Major = #{workRecordMajor},Class = #{workRecordClass},Teacher = #{workRecordTeacher},Job_title = #{workRecordJob_title},Title = #{workRecordTitle},Record_1 = #{workRecordRecord_1},Record_2 = #{workRecordRecord_2},Record_3 = #{workRecordRecord_3},Record_4 = #{workRecordRecord_4},Record_5 = #{workRecordRecord_5},Record_6 = #{workRecordRecord_6}
+        WHERE  Number = #{workRecordNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="WorkRecord" parameterType="long">
+        SELECT *
+        FROM work_record_form
+        WHERE Number=#{workRecordNumber}
+    </select>
+    <select id="queryAllWorkRecord" resultMap="workRecordResultMap">
+        SELECT Faculty,Major,Class,Name,Number
+        FROM work_record_form
+    </select>
+    <select id="queryByNumberWorkRecord" resultMap="workRecordResultMap" parameterType="long">
+        SELECT *
+        FROM work_record_form
+        WHERE Number=#{workRecordNumber}
+    </select>
+
+
+</mapper>

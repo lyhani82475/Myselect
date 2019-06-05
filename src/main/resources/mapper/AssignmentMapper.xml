@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.AssignmentDao">
+
+    <resultMap type="Assignment" id="assignmentResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="assignmentNumber" column="Number"/>
+        <result property="assignmentFaculty" column="Faculty"/>
+        <result property="assignmentMajor" column="Major"/>
+        <result property="assignmentName" column="Name"/>
+        <result property="assignmentTitle" column="Title"/>
+        <result property="assignmentContent" column="Content"/>
+        <result property="assignmentWork" column="Work"/>
+        <result property="assignmentSchedule_1_time" column="Schedule_1_time"/>
+        <result property="assignmentSchedule_1_work" column="Schedule_1_work"/>
+        <result property="assignmentSchedule_2_time" column="Schedule_2_time"/>
+        <result property="assignmentSchedule_2_work" column="Schedule_2_work"/>
+        <result property="assignmentSchedule_3_time" column="Schedule_3_time"/>
+        <result property="assignmentSchedule_3_work" column="Schedule_3_work"/>
+        <result property="assignmentSchedule_4_time" column="Schedule_4_time"/>
+        <result property="assignmentSchedule_4_work" column="Schedule_4_work"/>
+        <result property="assignmentSchedule_5_time" column="Schedule_5_time"/>
+        <result property="assignmentSchedule_5_work" column="Schedule_5_work"/>
+        <result property="assignmentSchedule_6_time" column="Schedule_6_time"/>
+        <result property="assignmentSchedule_6_work" column="Schedule_6_work"/>
+        <result property="assignmentSchedule_7_time" column="Schedule_7_time"/>
+        <result property="assignmentSchedule_7_work" column="Schedule_7_work"/>
+        <result property="assignmentSchedule_8_time" column="Schedule_8_time"/>
+        <result property="assignmentSchedule_8_work" column="Schedule_8_work"/>
+        <result property="assignmentDocument" column="Document"/>
+    </resultMap>
+    <insert id="addAssignment" parameterType="Assignment">
+        INSERT INTO assignment_book(Faculty,Major,Name,Number,Title,Content,Work,Schedule_1_time,Schedule_1_work,Schedule_2_time,Schedule_2_work,Schedule_3_time,Schedule_3_work,Schedule_4_time,Schedule_4_work,Schedule_5_time,Schedule_5_work,Schedule_6_time,Schedule_6_work,Schedule_7_time,Schedule_7_work,Schedule_8_time,Schedule_8_work,Document) VALUE (#{assignmentFaculty},#{assignmentMajor}, #{assignmentName}, #{assignmentNumber}, #{assignmentTitle},#{assignmentContent},#{assignmentWork},#{assignmentSchedule_1_time}, #{assignmentSchedule_1_work}, #{assignmentSchedule_2_time}, #{assignmentSchedule_2_work},#{assignmentSchedule_3_time}, #{assignmentSchedule_3_work}, #{assignmentSchedule_4_time}, #{assignmentSchedule_4_work},#{assignmentSchedule_5_time}, #{assignmentSchedule_5_work}, #{assignmentSchedule_6_time}, #{assignmentSchedule_6_work},#{assignmentSchedule_7_time}, #{assignmentSchedule_7_work}, #{assignmentSchedule_8_time}, #{assignmentSchedule_8_work},#{assignmentDocument})
+    </insert>
+
+    <delete id="deleteAssignmentByNumber" parameterType="long">
+        DELETE FROM assignment_book WHERE Number=#{assignmentNumber}
+    </delete>
+
+    <update id="updateAssignment" parameterType="Assignment">
+        UPDATE assignment_book
+        SET Faculty = #{assignmentFaculty},Major = #{assignmentMajor},Name = #{assignmentName},Title = #{assignmentTitle},Content = #{assignmentContent},Work = #{assignmentWork},Schedule_1_time = #{assignmentSchedule_1_time},Schedule_1_work = #{assignmentSchedule_1_work},Schedule_2_time = #{assignmentSchedule_2_time},Schedule_2_work=#{assignmentSchedule_2_work},Schedule_3_time = #{assignmentSchedule_3_time},Schedule_3_work = #{assignmentSchedule_3_work},Schedule_4_time = #{assignmentSchedule_4_time},Schedule_4_work = #{assignmentSchedule_4_work},Schedule_5_time = #{assignmentSchedule_5_time},Schedule_5_work=#{assignmentSchedule_5_work},Schedule_6_time = #{assignmentSchedule_6_time},Schedule_6_work = #{assignmentSchedule_6_work},Schedule_7_time = #{assignmentSchedule_7_time},Schedule_7_work=#{assignmentSchedule_7_work},Schedule_8_time = #{assignmentSchedule_8_time},Schedule_8_work = #{assignmentSchedule_8_work},Document = #{assignmentDocument}
+        WHERE  Number = #{assignmentNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="Assignment" parameterType="long">
+        SELECT Faculty,Major,Name,Number,Title,Content,Work,Schedule_1_time,Schedule_1_work,Schedule_2_time,Schedule_2_work,Schedule_3_time,Schedule_3_work,Schedule_4_time,Schedule_4_work,Schedule_5_time,Schedule_5_work,Schedule_6_time,Schedule_6_work,Schedule_7_time,Schedule_7_work,Schedule_8_time,Schedule_8_work,Document
+        FROM assignment_book
+        WHERE Number=#{assignmentNumber}
+    </select>
+    <select id="queryAllAssignment" resultMap="assignmentResultMap">
+        SELECT Faculty,Major,Name,Number
+        FROM assignment_book
+    </select>
+    <select id="queryByNumberAssignment" resultMap="assignmentResultMap" parameterType="long">
+        SELECT *
+        FROM assignment_book
+        WHERE Number=#{assignmentNumber}
+    </select>
+
+
+</mapper>

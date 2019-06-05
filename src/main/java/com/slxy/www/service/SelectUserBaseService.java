@@ -496,6 +496,43 @@ public class SelectUserBaseService extends  ServiceImpl <ISelectUserBaseMapper, 
             logger.info("添加失败 : " + importStuVo.getUserName());
             return false;
         }
+
+        //任务书
+        Assignment assignment = new Assignment();
+        assignment.setAssignmentName(userBase.getUserName());
+        assignment.setAssignmentNumber(Long.parseLong(userBase.getUserCode()));
+
+        //开题报告
+        OpeningReport openingReport = new OpeningReport();
+        openingReport.setOpeningReportName(userBase.getUserName());
+        openingReport.setOpeningReportNumber(Long.parseLong(userBase.getUserCode()));
+
+        //答辩申请表
+        Application application = new Application();
+        application.setApplicationName(userBase.getUserName());
+        application.setApplicationNumber(Long.parseLong(userBase.getUserCode()));
+
+        //指导工作记录表
+        WorkRecord workRecord = new WorkRecord();
+        workRecord.setWorkRecordName(userBase.getUserName());
+        workRecord.setWorkRecordNumber(Long.parseLong(userBase.getUserCode()));
+
+        //指导教师评分表
+        Score score = new Score();
+        score.setScoreName(userBase.getUserName());
+        score.setScoreNumber(Long.parseLong(userBase.getUserCode()));
+
+        //评阅教师评阅表
+        Comment comment = new Comment();
+        comment.setCommentName(userBase.getUserName());
+        comment.setCommentNumber(Long.parseLong(userBase.getUserCode()));
+
+        //答辩情况登记表
+        Registration registration = new Registration();
+        registration.setRegistrationName(userBase.getUserName());
+        registration.setRegistrationNumber(Long.parseLong(userBase.getUserCode()));
+
+
         return true;
     }
 

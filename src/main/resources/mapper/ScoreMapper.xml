@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slxy.www.dao.ScoreDao">
+
+    <resultMap type="Score" id="scoreResultMap" >
+        <!--column代表数据库字段名  paperty代表映射数据库的字段或属性-->
+        <id property="scoreNumber" column="Number"/>
+        <result property="scoreFaculty" column="Faculty"/>
+        <result property="scoreMajor" column="Major"/>
+        <result property="scoreName" column="Name"/>
+        <result property="scoreTitle" column="Title"/>
+        <result property="scoreScore_1" column="Score_1"/>
+        <result property="scoreScore_2" column="Score_2"/>
+        <result property="scoreScore_3" column="Score_3"/>
+        <result property="scoreScore_4" column="Score_4"/>
+        <result property="scoreScore_5" column="Score_5"/>
+        <result property="scoreScore_6" column="Score_6"/>
+        <result property="scoreScore_7" column="Score_7"/>
+        <result property="scoreScore_8" column="Score_8"/>
+        <result property="scoreScore_9" column="Score_9"/>
+        <result property="scoreScore_10" column="Score_10"/>
+        <result property="scoreScore_11" column="Score_11"/>
+        <result property="scoreScore_12" column="Score_12"/>
+        <result property="scoreScore_13" column="Score_13"/>
+        <result property="scoreScore_14" column="Score_14"/>
+        <result property="scoreScore_15" column="Score_15"/>
+        <result property="scoreScore_16" column="Score_16"/>
+        <result property="scoreTeacher_judge" column="Teacher_judge"/>
+    </resultMap>
+    <insert id="addScore" parameterType="Score">
+        INSERT INTO score_form(Faculty,Major,Name,Number,Title,Score_1,Score_2,Score_3,Score_4,Score_5,Score_6,Score_7,Score_8,Score_9,Score_10,Score_11,Score_12,Score_13,Score_14,Score_15,Score_16,Teacher_judge) VALUE (#{scoreFaculty},#{scoreMajor}, #{scoreName}, #{scoreNumber}, #{scoreTitle},#{scoreScore_1},#{scoreScore_2},#{scoreScore_3}, #{scoreScore_4}, #{scoreScore_5}, #{scoreScore_6},#{scoreScore_7}, #{scoreScore_8}, #{scoreScore_9},#{scoreScore_10},#{scoreScore_11},#{scoreScore_12}, #{scoreScore_13},#{scoreScore_14},#{scoreScore_15},#{scoreScore_16},#{scoreTeacher_judge})
+    </insert>
+
+    <delete id="deleteScoreByNumber" parameterType="long">
+        DELETE FROM score_form WHERE Number=#{scoreNumber}
+    </delete>
+
+    <update id="updateScore" parameterType="Score">
+        UPDATE score_form
+        SET Faculty = #{scoreFaculty},Major = #{scoreMajor},Name = #{scoreName},Title = #{scoreTitle},Score_1 = #{scoreScore_1},Score_2 = #{scoreScore_2},Score_3 = #{scoreScore_3},Score_4 = #{scoreScore_4},Score_5 = #{scoreScore_5},Score_6=#{scoreScore_6},Score_7 = #{scoreScore_7},Score_8 = #{scoreScore_8},Score_9 = #{scoreScore_9},Score_10 = #{scoreScore_10},Score_11 = #{scoreScore_11},Score_12=#{scoreScore_12},Score_13 = #{scoreScore_13},Score_14 = #{scoreScore_14},Score_15 = #{scoreScore_15},Score_16=#{scoreScore_16},Teacher_judge = #{scoreTeacher_judge}
+        WHERE  Number = #{scoreNumber}
+    </update>
+
+    <select id="queryByNumber" resultType="Score" parameterType="long">
+        SELECT *
+        FROM score_form
+        WHERE Number=#{scoreNumber}
+    </select>
+    <select id="queryAllScore" resultMap="scoreResultMap">
+        SELECT Faculty,Major,Name,Number
+        FROM score_form
+    </select>
+    <select id="queryByNumberScore" resultMap="scoreResultMap" parameterType="long">
+        SELECT *
+        FROM score_form
+        WHERE Number=#{scoreNumber}
+    </select>
+
+
+</mapper>
